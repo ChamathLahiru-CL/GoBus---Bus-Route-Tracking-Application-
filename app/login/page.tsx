@@ -2,10 +2,28 @@
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const [selectedRole, setSelectedRole] = useState('passenger');
+    const router = useRouter();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // TODO: Implement login logic with role
+        console.log('Login with role:', selectedRole);
+
+        // Redirect based on selected role
+        if (selectedRole === 'passenger') {
+            router.push('/passenger');
+        } else if (selectedRole === 'admin') {
+            router.push('/admin');
+        } else if (selectedRole === 'depo') {
+            router.push('/depo');
+        }
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-500 via-white to-teal-300 flex items-center justify-center p-4">
@@ -56,7 +74,7 @@ export default function Login() {
                         </p>
 
                         {/* Form */}
-                        <form className="space-y-4">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             {/* Email Input */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -94,6 +112,23 @@ export default function Login() {
                                         )}
                                     </button>
                                 </div>
+                            </div>
+
+                            {/* Account Type Selection */}
+                            <div>
+                                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Account Type
+                                </label>
+                                <select
+                                    id="role"
+                                    value={selectedRole}
+                                    onChange={(e) => setSelectedRole(e.target.value)}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                >
+                                    <option value="passenger">Passenger</option>
+                                    <option value="depo">Depot Staff</option>
+                                    <option value="admin">Administrator</option>
+                                </select>
                             </div>
 
                             {/* Login Button */}

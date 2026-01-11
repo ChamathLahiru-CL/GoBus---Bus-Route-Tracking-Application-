@@ -2,11 +2,21 @@
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const router = useRouter();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // TODO: Implement signup logic with default passenger role
+        console.log('Signup with default role: passenger');
+        // Redirect to passenger dashboard after signup
+        router.push('/passenger');
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-500 via-white to-teal-300 flex items-center justify-center p-4">
@@ -57,7 +67,7 @@ export default function SignUp() {
                         </p>
 
                         {/* Form */}
-                        <form className="space-y-4">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             {/* Full Name Input */}
                             <div>
                                 <label htmlFor="fullname" className="block text-sm font-medium text-gray-700 mb-2">
