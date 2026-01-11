@@ -7,12 +7,11 @@ import Image from 'next/image';
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [selectedRole, setSelectedRole] = useState('passenger');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // TODO: Implement signup logic with role
-        console.log('Signup with role:', selectedRole);
+        // Implement signup logic with default passenger role
+        console.log('Signup with default role: passenger');
     };
 
     return (
@@ -89,23 +88,6 @@ export default function SignUp() {
                                     placeholder="you@example.com"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                                 />
-                            </div>
-
-                            {/* Account Type Selection */}
-                            <div>
-                                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
-                                    Account Type
-                                </label>
-                                <select
-                                    id="role"
-                                    value={selectedRole}
-                                    onChange={(e) => setSelectedRole(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                                >
-                                    <option value="passenger">Passenger</option>
-                                    <option value="depo">Depot Staff</option>
-                                    <option value="admin">Administrator</option>
-                                </select>
                             </div>
 
                             {/* Password Input */}
