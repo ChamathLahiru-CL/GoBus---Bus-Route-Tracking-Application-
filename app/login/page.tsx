@@ -2,16 +2,27 @@
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [selectedRole, setSelectedRole] = useState('passenger');
+    const router = useRouter();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // TODO: Implement login logic with role
         console.log('Login with role:', selectedRole);
+
+        // Redirect based on selected role
+        if (selectedRole === 'passenger') {
+            router.push('/passenger');
+        } else if (selectedRole === 'admin') {
+            router.push('/admin');
+        } else if (selectedRole === 'depo') {
+            router.push('/depo');
+        }
     };
 
     return (

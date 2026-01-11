@@ -2,16 +2,20 @@
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Implement signup logic with default passenger role
+        // TODO: Implement signup logic with default passenger role
         console.log('Signup with default role: passenger');
+        // Redirect to passenger dashboard after signup
+        router.push('/passenger');
     };
 
     return (
