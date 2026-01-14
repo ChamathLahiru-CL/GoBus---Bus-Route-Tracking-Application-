@@ -14,87 +14,87 @@ const generateDummyBuses = (from: string, to: string) => {
             departureTime: '06:00 AM',
             arrivalTime: '10:30 AM',
             duration: '4h 30m',
-            price: 'LKR 850',
+            price: 'LKR 1250',
             seatsAvailable: 23,
             totalSeats: 45,
             rating: 4.5,
-            amenities: ['AC', 'WiFi', 'Reclining Seats'],
-            type: 'AC Luxury',
+            amenities: ['AC', 'WiFi', 'Reclining Seats', 'Entertainment'],
+            type: 'Luxury',
         },
         {
             id: 2,
             busNumber: 'SL-245',
-            busName: 'Super Express',
+            busName: 'Royal Express',
             operator: 'Private Line',
             departureTime: '08:15 AM',
             arrivalTime: '12:00 PM',
             duration: '3h 45m',
-            price: 'LKR 1200',
-            seatsAvailable: 12,
+            price: 'LKR 850',
+            seatsAvailable: 18,
             totalSeats: 40,
-            rating: 4.8,
-            amenities: ['AC', 'WiFi', 'Reclining Seats'],
-            type: 'Premium AC',
+            rating: 4.2,
+            amenities: ['AC', 'Reclining Seats'],
+            type: 'Semi-Luxury',
         },
         {
             id: 3,
-            busNumber: 'SL-089',
-            busName: 'Regular Service',
-            operator: 'SLTB',
+            busNumber: 'SL-312',
+            busName: 'Platinum Luxury',
+            operator: 'Lanka Express',
             departureTime: '09:30 AM',
-            arrivalTime: '02:45 PM',
-            duration: '5h 15m',
-            price: 'LKR 450',
-            seatsAvailable: 35,
-            totalSeats: 55,
-            rating: 4.0,
-            amenities: ['Fan'],
-            type: 'Non-AC',
+            arrivalTime: '01:45 PM',
+            duration: '4h 15m',
+            price: 'LKR 1400',
+            seatsAvailable: 12,
+            totalSeats: 35,
+            rating: 4.8,
+            amenities: ['AC', 'WiFi', 'Reclining Seats', 'Entertainment', 'USB Charging'],
+            type: 'Luxury',
         },
         {
             id: 4,
-            busNumber: 'SL-312',
-            busName: 'City Express',
-            operator: 'Private Line',
+            busNumber: 'SL-456',
+            busName: 'Comfort Express',
+            operator: 'SLTB',
             departureTime: '11:00 AM',
-            arrivalTime: '03:15 PM',
-            duration: '4h 15m',
+            arrivalTime: '03:30 PM',
+            duration: '4h 30m',
             price: 'LKR 750',
-            seatsAvailable: 18,
+            seatsAvailable: 25,
             totalSeats: 45,
-            rating: 4.3,
+            rating: 4.0,
             amenities: ['AC', 'Reclining Seats'],
-            type: 'AC Standard',
+            type: 'Semi-Luxury',
         },
         {
             id: 5,
-            busNumber: 'SL-456',
-            busName: 'Night Rider',
-            operator: 'Lanka Express',
+            busNumber: 'SL-578',
+            busName: 'Premium Luxury',
+            operator: 'Private Line',
             departureTime: '02:00 PM',
-            arrivalTime: '06:45 PM',
-            duration: '4h 45m',
-            price: 'LKR 950',
+            arrivalTime: '06:15 PM',
+            duration: '4h 15m',
+            price: 'LKR 1350',
             seatsAvailable: 8,
             totalSeats: 40,
-            rating: 4.6,
-            amenities: ['AC', 'WiFi', 'Reclining Seats'],
-            type: 'AC Luxury',
+            rating: 4.7,
+            amenities: ['AC', 'WiFi', 'Reclining Seats', 'Entertainment'],
+            type: 'Luxury',
         },
         {
             id: 6,
-            busNumber: 'SL-578',
-            busName: 'Budget Express',
-            operator: 'SLTB',
+            busNumber: 'SL-689',
+            busName: 'Swift Semi-Luxury',
+            operator: 'Lanka Express',
             departureTime: '04:30 PM',
-            arrivalTime: '09:30 PM',
-            duration: '5h 00m',
-            price: 'LKR 380',
-            seatsAvailable: 42,
-            totalSeats: 55,
-            rating: 3.8,
-            amenities: ['Fan'],
-            type: 'Non-AC',
+            arrivalTime: '08:45 PM',
+            duration: '4h 15m',
+            price: 'LKR 800',
+            seatsAvailable: 30,
+            totalSeats: 45,
+            rating: 4.3,
+            amenities: ['AC', 'Reclining Seats'],
+            type: 'Semi-Luxury',
         },
     ];
 };
@@ -174,7 +174,8 @@ function RoutesContent() {
                     {buses.map((bus) => (
                         <div 
                             key={bus.id}
-                            className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                            onClick={() => router.push(`/passenger/bus-details?id=${bus.id}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}`)}
+                            className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 cursor-pointer"
                         >
                             <div className="p-6">
                                 <div className="flex flex-col lg:flex-row gap-6">
@@ -188,13 +189,9 @@ function RoutesContent() {
                                                         {bus.busName}
                                                     </h3>
                                                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                                        bus.type.includes('Luxury') 
+                                                        bus.type === 'Luxury' 
                                                             ? 'bg-purple-100 text-purple-700'
-                                                            : bus.type.includes('Premium')
-                                                            ? 'bg-blue-100 text-blue-700'
-                                                            : bus.type.includes('AC')
-                                                            ? 'bg-green-100 text-green-700'
-                                                            : 'bg-gray-100 text-gray-700'
+                                                            : 'bg-blue-100 text-blue-700'
                                                     }`}>
                                                         {bus.type}
                                                     </span>
@@ -272,9 +269,32 @@ function RoutesContent() {
                                             </div>
                                         </div>
                                         
-                                        <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
-                                            Book Now
-                                        </button>
+                                        <div className="flex flex-col gap-3">
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    router.push(`/passenger/bus-details?id=${bus.id}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}`);
+                                                }}
+                                                className="w-full bg-white border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-xl hover:bg-blue-50 transition-all duration-200 font-semibold"
+                                            >
+                                                View Details
+                                            </button>
+                                            {bus.type === 'Luxury' ? (
+                                                <button 
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        router.push(`/passenger/bus-details?id=${bus.id}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}`);
+                                                    }}
+                                                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                                                >
+                                                    Book Seat
+                                                </button>
+                                            ) : (
+                                                <div className="w-full bg-gray-200 text-gray-500 py-3 px-6 rounded-xl text-center font-semibold cursor-not-allowed">
+                                                    Booking Unavailable
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
