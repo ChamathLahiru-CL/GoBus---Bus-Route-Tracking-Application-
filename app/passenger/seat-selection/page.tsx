@@ -226,16 +226,16 @@ function SeatSelectionContent() {
                         </div>
 
                         {/* Bus Layout */}
-                        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-                            <div className="mb-4 flex items-center justify-between">
-                                <h2 className="text-lg font-bold text-gray-800">Bus Layout</h2>
-                                <div className="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                        <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-200">
+                            <div className="mb-3 flex items-center justify-between">
+                                <h2 className="text-base font-bold text-gray-800">Bus Layout</h2>
+                                <div className="bg-gray-800 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">
                                     Driver
                                 </div>
                             </div>
                             
                             {/* Seats Grid */}
-                            <div className="bg-gradient-to-b from-gray-50 to-white p-4 rounded-lg border-2 border-gray-200">
+                            <div className="bg-gradient-to-b from-gray-50 to-white p-3 rounded-lg border-2 border-gray-200">
                                 <div className="grid grid-cols-4 gap-1.5">
                                     {seats.map((seat) => (
                                         <button
@@ -271,32 +271,55 @@ function SeatSelectionContent() {
                         {/* Journey Summary */}
                         <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 sticky top-24">
                             <h2 className="text-lg font-bold text-gray-800 mb-4">Journey Details</h2>
-                            <div className="space-y-3 text-sm mb-6">
-                                <div className="flex items-center gap-2">
-                                    <MapPin className="w-4 h-4 text-green-600" />
-                                    <span className="text-gray-600">From:</span>
-                                    <span className="font-semibold text-gray-800">{from}</span>
+                            <div className="grid grid-cols-2 gap-4 mb-4">
+                                <div className="space-y-3 text-sm">
+                                    <div className="flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-gray-600 text-xs">From</div>
+                                            <div className="font-semibold text-gray-800">{from}</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-red-600 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-gray-600 text-xs">To</div>
+                                            <div className="font-semibold text-gray-800">{to}</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-gray-600 text-xs">Date</div>
+                                            <div className="font-semibold text-gray-800">
+                                                {new Date(date).toLocaleDateString('en-US', { 
+                                                    month: 'short', 
+                                                    day: 'numeric', 
+                                                    year: 'numeric' 
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Clock className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                                        <div>
+                                            <div className="text-gray-600 text-xs">Time</div>
+                                            <div className="font-semibold text-gray-800">{bus.departureTime}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin className="w-4 h-4 text-red-600" />
-                                    <span className="text-gray-600">To:</span>
-                                    <span className="font-semibold text-gray-800">{to}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Calendar className="w-4 h-4 text-blue-600" />
-                                    <span className="text-gray-600">Date:</span>
-                                    <span className="font-semibold text-gray-800">
-                                        {new Date(date).toLocaleDateString('en-US', { 
-                                            month: 'short', 
-                                            day: 'numeric', 
-                                            year: 'numeric' 
-                                        })}
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock className="w-4 h-4 text-purple-600" />
-                                    <span className="text-gray-600">Time:</span>
-                                    <span className="font-semibold text-gray-800">{bus.departureTime}</span>
+                                
+                                {/* Bus Facilities */}
+                                <div>
+                                    <h3 className="font-bold text-gray-800 mb-2 text-sm">Facilities</h3>
+                                    <div className="space-y-1.5">
+                                        {bus.amenities.map((amenity) => (
+                                            <div key={amenity} className="flex items-center gap-2 text-xs text-gray-700">
+                                                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                                                {amenity}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
