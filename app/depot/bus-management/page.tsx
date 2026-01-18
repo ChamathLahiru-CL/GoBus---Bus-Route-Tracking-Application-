@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Plus, Search, Edit, Trash2, Bus, User } from 'lucide-react';
+import { ArrowLeft, Plus, Search, Edit, Trash2, Bus } from 'lucide-react';
+import DepotNavbar from '../../../components/depot/DepotNavbar';
+import DepotFooter from '../../../components/depot/DepotFooter';
 
 interface BusData {
     id: number;
@@ -74,105 +76,109 @@ export default function BusManagement() {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-            {/* Modern Header with Glass Effect */}
-            <header className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div className="flex items-center gap-4">
-                            <Link href="/depot">
-                                <button className="p-3 bg-white/50 hover:bg-white/70 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                    <ArrowLeft size={24} className="text-gray-700" />
-                                </button>
-                            </Link>
-                            <div className="space-y-1">
-                                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                    Bus Management
-                                </h1>
-                                <p className="text-gray-600 text-lg">Manage buses and assign drivers</p>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col">
+            <DepotNavbar />
+
+            <div className="flex-1">
+                {/* Modern Header with Glass Effect */}
+                <header className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-10">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div className="flex items-center gap-4">
+                                <Link href="/depot">
+                                    <button className="p-3 bg-white/50 hover:bg-white/70 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        <ArrowLeft size={24} className="text-gray-700" />
+                                    </button>
+                                </Link>
+                                <div className="space-y-1">
+                                    <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                        Bus Management
+                                    </h1>
+                                    <p className="text-gray-600 text-lg">Manage buses and assign drivers</p>
+                                </div>
                             </div>
+                            <button
+                                onClick={() => setShowAddModal(true)}
+                                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            >
+                                <Plus size={20} />
+                                Add New Bus
+                            </button>
                         </div>
-                        <button
-                            onClick={() => setShowAddModal(true)}
-                            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                        >
-                            <Plus size={20} />
-                            Add New Bus
-                        </button>
                     </div>
-                </div>
-            </header>
+                </header>
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Modern Search Bar */}
-                <div className="mb-8">
-                    <div className="relative max-w-md">
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                        <input
-                            type="text"
-                            placeholder="Search by bus number, driver, or route..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg hover:shadow-xl transition-all duration-300"
-                        />
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    {/* Modern Search Bar */}
+                    <div className="mb-8">
+                        <div className="relative max-w-md">
+                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <input
+                                type="text"
+                                placeholder="Search by bus number, driver, or route..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full pl-12 pr-4 py-4 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg hover:shadow-xl transition-all duration-300"
+                            />
+                        </div>
                     </div>
-                </div>
 
-                {/* Modern Bus List */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {filteredBuses.map((bus) => (
-                        <div key={bus.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-white/50 hover:border-blue-200 transform hover:-translate-y-1">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="flex items-center gap-4">
-                                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                        <Bus className="text-white" size={32} />
+                    {/* Modern Bus List */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {filteredBuses.map((bus) => (
+                            <div key={bus.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-white/50 hover:border-blue-200 transform hover:-translate-y-1">
+                                <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center gap-4">
+                                        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                            <Bus className="text-white" size={32} />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                {bus.busNumber}
+                                            </h3>
+                                            <p className="text-gray-600">{bus.route}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                            {bus.busNumber}
-                                        </h3>
-                                        <p className="text-gray-600">{bus.route}</p>
+                                    <div className="flex items-center gap-2">
+                                        <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 hover:shadow-md">
+                                            <Edit size={20} />
+                                        </button>
+                                        <button
+                                            onClick={() => handleDeleteBus(bus.id)}
+                                            className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 hover:shadow-md"
+                                        >
+                                            <Trash2 size={20} />
+                                        </button>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 hover:shadow-md">
-                                        <Edit size={20} />
-                                    </button>
-                                    <button
-                                        onClick={() => handleDeleteBus(bus.id)}
-                                        className="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 hover:shadow-md"
-                                    >
-                                        <Trash2 size={20} />
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div className="grid grid-cols-2 gap-4 mb-4">
-                                <div className="bg-white/50 rounded-xl p-4">
-                                    <p className="text-sm text-gray-600 font-medium">Driver</p>
-                                    <p className="text-lg font-semibold text-gray-900">{bus.driverName}</p>
-                                    <p className="text-sm text-gray-500">{bus.driverContact}</p>
+                                <div className="grid grid-cols-2 gap-4 mb-4">
+                                    <div className="bg-white/50 rounded-xl p-4">
+                                        <p className="text-sm text-gray-600 font-medium">Driver</p>
+                                        <p className="text-lg font-semibold text-gray-900">{bus.driverName}</p>
+                                        <p className="text-sm text-gray-500">{bus.driverContact}</p>
+                                    </div>
+                                    <div className="bg-white/50 rounded-xl p-4">
+                                        <p className="text-sm text-gray-600 font-medium">Capacity</p>
+                                        <p className="text-lg font-semibold text-gray-900">{bus.capacity} seats</p>
+                                        <p className="text-sm text-gray-500">Last service: {bus.lastService}</p>
+                                    </div>
                                 </div>
-                                <div className="bg-white/50 rounded-xl p-4">
-                                    <p className="text-sm text-gray-600 font-medium">Capacity</p>
-                                    <p className="text-lg font-semibold text-gray-900">{bus.capacity} seats</p>
-                                    <p className="text-sm text-gray-500">Last service: {bus.lastService}</p>
-                                </div>
-                            </div>
 
-                            <div className="flex items-center justify-between">
-                                <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${bus.status === 'active' ? 'bg-green-100 text-green-800' :
+                                <div className="flex items-center justify-between">
+                                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${bus.status === 'active' ? 'bg-green-100 text-green-800' :
                                         bus.status === 'maintenance' ? 'bg-yellow-100 text-yellow-800' :
                                             'bg-gray-100 text-gray-800'
-                                    }`}>
-                                    {bus.status.charAt(0).toUpperCase() + bus.status.slice(1)}
-                                </span>
-                                <span className="text-sm text-gray-500">ID: {bus.id}</span>
+                                        }`}>
+                                        {bus.status.charAt(0).toUpperCase() + bus.status.slice(1)}
+                                    </span>
+                                    <span className="text-sm text-gray-500">ID: {bus.id}</span>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </main>
+                        ))}
+                    </div>
+                </main>
+            </div>
 
             {/* Modern Add Bus Modal */}
             {showAddModal && (
@@ -294,6 +300,8 @@ export default function BusManagement() {
                     </div>
                 </div>
             )}
+
+            <DepotFooter />
         </div>
     );
 }
