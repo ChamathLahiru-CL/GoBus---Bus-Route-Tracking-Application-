@@ -24,7 +24,7 @@ export default function Navbar() {
                         <a href="#" className="text-gray-600 hover:text-gray-900">Find Routes</a>
                         <a href="#" className="text-gray-600 hover:text-gray-900">About Us</a>
                         <a href="#" className="text-gray-600 hover:text-gray-900">Contact</a>
-                        <Link href="/depot" className="text-purple-600 hover:text-purple-900 font-medium">
+                        <Link href="/login" className="text-purple-600 hover:text-purple-900 font-medium">
                             Depot
                         </Link>
                     </div>

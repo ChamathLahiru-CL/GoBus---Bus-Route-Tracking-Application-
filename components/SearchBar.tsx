@@ -12,7 +12,7 @@ export default function SearchBar() {
                                 FROM:
                             </label>
                             <div className="relative">
-                                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                                 <input
                                     type="text"
                                     placeholder="Start Location (e.g., Badulla Town)"
@@ -27,7 +27,7 @@ export default function SearchBar() {
                                 TO:
                             </label>
                             <div className="relative">
-                                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                                 <input
                                     type="text"
                                     placeholder="End Location (e.g., Ella)"
@@ -42,10 +42,9 @@ export default function SearchBar() {
                                 DATE:
                             </label>
                             <div className="relative">
-                                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                                 <input
                                     type="date"
-                                    placeholder="[Today's Date]"
                                     className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                                 />
                             </div>

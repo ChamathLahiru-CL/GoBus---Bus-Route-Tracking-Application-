@@ -123,11 +123,11 @@ export default function Login() {
                                     id="role"
                                     value={selectedRole}
                                     onChange={(e) => setSelectedRole(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white text-gray-900 cursor-pointer appearance-none"
                                 >
-                                    <option value="passenger">Passenger</option>
-                                    <option value="depo">Depot Staff</option>
-                                    <option value="admin">Administrator</option>
+                                    <option value="passenger" className="bg-white text-gray-900">Passenger</option>
+                                    <option value="depo" className="bg-white text-gray-900">Depot Staff</option>
+                                    <option value="admin" className="bg-white text-gray-900">Administrator</option>
                                 </select>
                             </div>
 
@@ -145,7 +145,7 @@ export default function Login() {
                             <a href="#" className="text-blue-600 hover:underline font-medium">
                                 Forgot password?
                             </a>
-                            <a href="#" className="text-blue-600 hover:underline font-medium">
+                            <a href="/signup" className="text-blue-600 hover:underline font-medium">
                                 New Passenger? Create an Account
                             </a>
                         </div>
