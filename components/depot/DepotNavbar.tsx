@@ -66,8 +66,8 @@ export default function DepotNavbar() {
                     key={item.href}
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${isActive(item.href)
-                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                        : 'text-gray-700 hover:bg-white/70 hover:shadow-md'
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-white/70 hover:shadow-md'
                       }`}
                   >
                     <Icon size={18} />
@@ -95,6 +95,10 @@ export default function DepotNavbar() {
                 {/* Dropdown Content */}
                 <div className="absolute right-0 mt-2 w-48 bg-white/90 backdrop-blur-lg rounded-xl shadow-xl border border-white/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="py-2">
+                    <Link href="/depot/account" className="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-lg mx-2">
+                      <Settings className="w-4 h-4" />
+                      My Account
+                    </Link>
                     <Link href="/depot#settings" className="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition rounded-lg mx-2">
                       <Settings className="w-4 h-4" />
                       Settings
@@ -152,8 +156,8 @@ export default function DepotNavbar() {
                         href={item.href}
                         onClick={() => setIsSidebarOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${isActive(item.href)
-                            ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                            : 'text-gray-700 hover:bg-white/70 hover:shadow-md'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-white/70 hover:shadow-md'
                           }`}
                       >
                         <Icon size={20} />
@@ -161,6 +165,17 @@ export default function DepotNavbar() {
                       </Link>
                     );
                   })}
+                  <Link
+                    href="/depot/account"
+                    onClick={() => setIsSidebarOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${isActive('/depot/account')
+                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-white/70 hover:shadow-md'
+                      }`}
+                  >
+                    <Settings size={20} />
+                    My Account
+                  </Link>
                 </nav>
               </div>
 
