@@ -4,6 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -60,12 +61,16 @@ export default function Login() {
                     {/* RIGHT SECTION - LOGIN FORM */}
                     <div className="flex flex-col justify-center p-8 md:p-12">
                         {/* Logo */}
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                <span className="text-white font-bold text-lg">G</span>
-                            </div>
-                            <span className="text-xl font-semibold text-gray-900">GoBus</span>
-                        </div>
+                        <Link href="/" className="flex items-center gap-0 mb-8 cursor-pointer">
+                            <Image
+                                src="/logo/logo.png"
+                                alt="GoBus Logo"
+                                width={80}
+                                height={80}
+                                className="rounded-full"
+                            />
+                            <span className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition">GoBus</span>
+                        </Link>
 
                         {/* Heading */}
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to GoBus</h1>
@@ -123,11 +128,11 @@ export default function Login() {
                                     id="role"
                                     value={selectedRole}
                                     onChange={(e) => setSelectedRole(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white text-gray-900 cursor-pointer appearance-none"
                                 >
-                                    <option value="passenger">Passenger</option>
-                                    <option value="depo">Depot Staff</option>
-                                    <option value="admin">Administrator</option>
+                                    <option value="passenger" className="bg-white text-gray-900">Passenger</option>
+                                    <option value="depo" className="bg-white text-gray-900">Depot Staff</option>
+                                    <option value="admin" className="bg-white text-gray-900">Administrator</option>
                                 </select>
                             </div>
 
@@ -142,10 +147,10 @@ export default function Login() {
 
                         {/* Links */}
                         <div className="flex justify-between items-center mt-4 text-sm">
-                            <a href="#" className="text-blue-600 hover:underline font-medium">
+                            <a href="/forgot-password" className="text-blue-600 hover:underline font-medium">
                                 Forgot password?
                             </a>
-                            <a href="#" className="text-blue-600 hover:underline font-medium">
+                            <a href="/signup" className="text-blue-600 hover:underline font-medium">
                                 New Passenger? Create an Account
                             </a>
                         </div>
