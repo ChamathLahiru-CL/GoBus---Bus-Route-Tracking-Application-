@@ -23,7 +23,7 @@ export default function Navbar() {
                         <a href="#" className="text-blue-600 font-medium">Home</a>
                         <a href="#" className="text-gray-600 hover:text-gray-900">Find Routes</a>
                         <a href="/about" className="text-gray-600 hover:text-gray-900">About Us</a>
-                        <a href="#" className="text-gray-600 hover:text-gray-900">Contact</a>
+                        <a href="/contact" className="text-gray-600 hover:text-gray-900">Contact</a>
                         <Link href="/login" className="text-purple-600 hover:text-purple-900 font-medium">
                             Depot
                         </Link>
